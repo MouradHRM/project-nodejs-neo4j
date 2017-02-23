@@ -1,0 +1,8 @@
+extends layout.pug
+block content
+    if(!user)
+        a(href='/login') Login
+        br
+    if(user)
+        p You are currently logged in as #{user.username} pwd : #{user.password}
+        a(href='logout') Logout
