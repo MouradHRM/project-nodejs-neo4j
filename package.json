@@ -1,6 +1,6 @@
 {
   "name": "phd-management",
-  "description": "Projet web en nodejs, express, pug, styus et node-neo4j",
+  "description": "Projet web en nodejs, express, pug, bootstrap et node-neo4j",
   "version": "1.0.0",
   "author": "Mourad Hrm",
   "dependencies": {

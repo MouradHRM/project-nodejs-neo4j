@@ -1,0 +1,30 @@
+extends layout.pug
+
+block content
+    if(user)
+        .wrapper
+            .topbar
+                .topbar-left
+                    .text-center
+                        a.logo(href='/dashboard')
+                            i.icon-magnet.icon-c-logo
+                            span Phd
+                                i.md.md-album(style='padding: 0 7px')
+                                |Management
+                .navbar.navbar-default(role='navigation')
+                    .container
+                        div
+                            ul.nav.navbar-nav.navbar-right.pull-right
+                                li.dropdown.top-menu-item-xs
+                                    a.dropdown-toggle.profile.waves-effect.waves-light(href='', data-toggle='dropdown', aria-expanded='true')
+                                        img.img-circle(src='/bootstrap-3.3.7-dist/images/avatar-1.png', alt='Omar Boussaid')
+                                    ul.dropdown-menu
+                                        li
+                                            a(href='')
+                                                i.ti-user.m-r-10.text-custom
+                                                |Bienvenue #{user.displayName}
+                                        li.divider
+                                        li
+                                            a(href='logout')
+                                                i.ti-power-off.m-r-10.text-danger
+                                                |Déconnexion

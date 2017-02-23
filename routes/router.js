@@ -8,11 +8,15 @@ routes.get('/', function(req, res, next) {
   res.render('homepage', {user: req.user, password: req.password});
 });
 
+routes.get('/dashboard', function(req, res, next) {
+  res.render('dashboard', {user: req.user, password: req.password});
+});
+
 routes.get('/login', function(req, res, next) {
     res.render('login');
 });
 
-routes.post('/login', passport.authenticate('local', { successRedirect:'/', failureRedirect: '/login'}));
+routes.post('/login', passport.authenticate('local', { successRedirect:'/dashboard', failureRedirect: '/login'}));
 
 routes.get('/logout', function(req, res, next){
     req.logout();
