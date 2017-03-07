@@ -1,8 +1,16 @@
 extends layout.pug
+mixin doct(nom, prenom, intitul, domaine)
+    .col-md-4
+        .grid-container.card-box
+             h2=nom + ' ' + prenom
+             h3=intitul
+             p=domaine
+             p
+                 a.btn.btn-primary(href='' role='button') Détails &raquo;
 
 block content
     if(user)
-        .wrapper
+        #wrapper
             .topbar
                 .topbar-left
                     .text-center
@@ -14,6 +22,15 @@ block content
                 .navbar.navbar-default(role='navigation')
                     .container
                         div
+                            ul.nav.navbar-nav.navbar-right.pull-left
+                                li
+                                    a(href='') Doctorants
+                                li
+                                    a(href='') Membres de jury
+                                li
+                                    a(href='') Articles
+                                li
+                                    a(href='') Soutenance
                             ul.nav.navbar-nav.navbar-right.pull-right
                                 li.dropdown.top-menu-item-xs
                                     a.dropdown-toggle.profile.waves-effect.waves-light(href='', data-toggle='dropdown', aria-expanded='true')
@@ -28,3 +45,27 @@ block content
                                             a(href='logout')
                                                 i.ti-power-off.m-r-10.text-danger
                                                 |Déconnexion
+                
+            .content-page
+                .content
+                    .container
+                        .jumbotron
+                            h1 Doctorants
+                    .container
+                        .row
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')

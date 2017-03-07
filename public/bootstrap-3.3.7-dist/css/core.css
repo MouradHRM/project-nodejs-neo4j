@@ -1290,7 +1290,8 @@ body.fixed-left .side-menu.left {
   position: fixed;
 }
 .content-page {
-  margin-left: 240px;
+  margin-left: 40px;
+  margin-right: 40px;
   overflow: hidden;
 }
 .content-page > .content {
