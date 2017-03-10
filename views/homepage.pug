@@ -6,3 +6,8 @@ block content
     if(user)
         p You are currently logged in as #{user.username} pwd : #{user.password}
         a(href='logout') Logout
+        if resultats.length
+            ul
+                for doc in resultats
+                    li #{doc.nom}
+                

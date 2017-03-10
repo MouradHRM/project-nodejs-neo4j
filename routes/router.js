@@ -2,18 +2,41 @@ var express = require('express');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+var Doc = require('../models/doctorant');
+
 var routes = express.Router();
 
+
 routes.get('/', function(req, res, next) {
-  res.render('homepage', {user: req.user, password: req.password});
+    /*Doc.getAll(function (err, results) {
+        if (err) return next(err);
+        res.render('homepage', {
+            user: req.user,
+            password: req.password,
+            resultats: results.data
+        });
+    });*/
+    res.render('login', {user: req.user, password: req.password});
 });
 
+/*routes.get('/', function(req, res, next) {
+  res.render('homepage', {user: req.user, password: req.password});
+});*/
+
 routes.get('/dashboard', function(req, res, next) {
-  res.render('dashboard', {user: req.user, password: req.password});
+    Doc.getAll(function (err, results) {
+        if (err) return next(err);
+        res.render('dashboard', {
+            user: req.user,
+            password: req.password,
+            resultats: results.data
+        });
+     });
+    //res.render('dashboard', {user: req.user, password: req.password});
 });
 
 routes.get('/login', function(req, res, next) {
-    res.render('login');
+    res.render('dashboard');
 });
 
 routes.post('/login', passport.authenticate('local', { successRedirect:'/dashboard', failureRedirect: '/login'}));

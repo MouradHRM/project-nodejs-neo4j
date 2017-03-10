@@ -52,20 +52,12 @@ block content
                         .jumbotron
                             h1 Doctorants
                     .container
-                        .row
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
-                            +doct('Smith', 'John', 'Base de données NoSQL', 'Big Data')
+                        .masonry-row
+                            if resultats.length
+                                for doc in resultats
+                                    .masonry-item
+                                        .card-box.masonry-well
+                                            h2 #{doc.prenom} #{doc.nom}
+                                            p #{doc.intitule}
+                                            p
+                                                a.btn.btn-primary(href='' role='button') Détails &raquo;

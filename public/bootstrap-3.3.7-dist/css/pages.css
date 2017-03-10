@@ -2184,3 +2184,36 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
   background-color: rgba(152, 166, 173, 0.2) !important;
   padding: 20px;
 }
+
+.masonry-row {
+  -moz-column-width: 25em;
+  -webkit-column-width: 25em;
+  -moz-column-gap: 1em;
+  -webkit-column-gap:1em;
+  box-sizing:  border-box !important;
+}
+
+.masonry-row::before, .masonry-row::after {
+    box-sizing:  border-box !important;
+}
+
+.masonry-item {
+  display: inline-block;
+  padding:  .25rem;
+  width:  100%; 
+  box-sizing:  border-box !important;
+}
+
+.masonry-item::before, .masonry-item::after {
+    box-sizing:  border-box !important;
+}
+
+.masonry-well {
+  position:relative;
+  display: block;
+  box-sizing:  border-box !important;
+}
+
+.masonry-well::before, .masonry-well::after {
+    box-sizing:  border-box !important;
+}
