@@ -41,7 +41,7 @@ routes.get('/dashboard/:idDoct', function(req, res, next) {
         res.render('doct_detail', {
             user: req.user,
             password: req.password,
-            resultats: results.data[0]
+            resultats: results.data
         });
      });
     //res.render('dashboard', {user: req.user, password: req.password});
