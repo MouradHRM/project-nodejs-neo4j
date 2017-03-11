@@ -6,16 +6,9 @@ var Doc = module.exports = function Doc(_node) {
 }
 
 Doc.get = function (idDoct, callback) {
-    db.cypherQuery("MATCH (doct:Doctorant {idDoct: {id}}) return doct", {
-        id: idDoct,
-    }, function (err, results) {
+    db.cypherQuery("MATCH (doct:Doctorant {idDoct:'" + idDoct + "'}) return doct", function (err, results) {
         if (err) return callback(err);
-        if (!results.length) {
-            err = new Error('No such user with idDoct: ' + idDoct);
-            return callback(err);
-        }
-        var doct = new Doc(results[0]['doct']);
-        //callback(null, doct);
+        callback(null, results);
     });
 };
 

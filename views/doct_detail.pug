@@ -1,0 +1,85 @@
+extends dashboard.pug
+
+block content
+    if(resultats)
+        - var format_date = function(date) { return date.substring(6,8) + '/' + date.substring(4,6) + '/' + date.substring(0,4)};
+            .content-page
+                .content
+                    .container
+                        .jumbotron
+                            h1 #{resultats.prenom} #{resultats.nom}
+                    .container
+                        .row
+                            .col-md-12
+                                h4.page-header.header-title Informations personnelles
+                        .row
+                            .col-md-3
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Nom
+                                    .panel-body
+                                        p #{resultats.nom}                        
+                            .col-md-3
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Prenom
+                                    .panel-body
+                                        p #{resultats.prenom}
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title ID doctorant
+                                    .panel-body
+                                        p #{resultats.idDoct}
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Téléphone
+                                    .panel-body
+                                        p #{resultats.phone}
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Adresse email
+                                    .panel-body
+                                        p #{resultats.mail}
+                        .row
+                            .col-md-12
+                                h4.page-header.header-title Thèse
+                        .row
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Type de thèse
+                                    .panel-body
+                                        p #{resultats.type_thèse}
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Domaine
+                                    .panel-body
+                                        p #{resultats.domaine}
+                            .col-md-8
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Intitulé de thèse
+                                    .panel-body
+                                        p #{resultats.intitule}
+                            .col-md-4
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Date de début
+                                    .panel-body
+                                        p=format_date(`${resultats.datedebut}`)
+                            .col-md-4
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Date de fin
+                                    .panel-body
+                                        p= format_date(`${resultats.datefin}`)
+                            .col-md-4
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Etat
+                                    .panel-body
+                                        p #{resultats.etat}  
