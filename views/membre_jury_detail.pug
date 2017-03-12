@@ -1,0 +1,74 @@
+extends dashboard.pug
+
+mixin membre(intitule, role , nom, prenom)
+    tr
+        td=intitule
+        td=role
+        td
+            a(href='')=prenom + ' ' + nom
+        
+        
+
+block content
+    if(resultats)
+        - var format_date = function(date) { return date.substring(6,8) + '/' + date.substring(4,6) + '/' + date.substring(0,4)};
+            .content-page
+                .content
+                    .container
+                        .jumbotron
+                            h1 #{resultats[0][0].prenom} #{resultats[0][0].nom}
+                    .container
+                        .row
+                            .col-md-12
+                                h4.page-header.header-title Informations personnelles
+                        .row
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Nom
+                                    .panel-body
+                                        p #{resultats[0][0].nom}                        
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Prenom
+                                    .panel-body
+                                        p #{resultats[0][0].prenom}
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Téléphone
+                                    .panel-body
+                                        p #{resultats[0][0].telephone}
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Adresse email
+                                    .panel-body
+                                        p #{resultats[0][0].mail}
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Etablissement
+                                    .panel-body
+                                        p #{resultats[0][0].etablissement}
+                            .col-md-2
+                                .panel.panel-border.panel-custom
+                                    .panel-heading
+                                        h3.panel-title Grade
+                                    .panel-body
+                                        p #{resultats[0][0].grade}
+                        .row
+                            .col-md-12
+                                h4.page-header.header-title Ses Thèses
+                        .row
+                            .card-box
+                                table.table.table-striped
+                                    thead
+                                        tr
+                                            th Intitulé Thèse
+                                            th Rôle
+                                            th Doctorant
+                                    tbody
+                                        for res in resultats
+                                            +membre(`${res[1].intitule}`, `${res[2]}`  , `${res[3].nom}`,`${res[3].prenom}`)

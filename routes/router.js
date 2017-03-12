@@ -3,6 +3,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var Doc = require('../models/doctorant');
+var Membre_jury = require('../models/membre_jury');
 
 var routes = express.Router();
 
@@ -46,7 +47,31 @@ routes.get('/dashboard/:idDoct', function(req, res, next) {
      });
     //res.render('dashboard', {user: req.user, password: req.password});
 });
+/******** Ahmed */
+routes.get('/membres_jury', function(req, res, next) {
+    Membre_jury.getAll(function (err, results) {
+        if (err) return next(err);
+        res.render('membres_jury', {
+            user: req.user,
+            password: req.password,
+            resultats: results.data
+        });
+     });
+    //res.render('dashboard', {user: req.user, password: req.password});
+});
 
+routes.get('/membres_jury/:idMembreJury', function(req, res, next) {
+    Membre_jury.get(req.params.idMembreJury, function (err, results) {
+        if (err) return next(err);
+        res.render('membre_jury_detail', {
+            user: req.user,
+            password: req.password,
+            resultats: results.data
+        });
+     });
+    //res.render('dashboard', {user: req.user, password: req.password});
+});
+/************/
 routes.get('/login', function(req, res, next) {
     res.render('dashboard');
 });

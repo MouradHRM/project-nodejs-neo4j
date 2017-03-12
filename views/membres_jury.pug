@@ -1,11 +1,11 @@
 extends layout.pug
-mixin doct(nom, prenom, intitul, id)
+mixin membre_jury(nom, prenom, grade, id)
     .masonry-item
         .card-box.masonry-well
             h2= prenom + ' ' + nom
-            p= intitul
+            p= grade
                 p
-                    a.btn.btn-primary(href=`dashboard/`+id, role='button') Détails &raquo;
+                    a.btn.btn-primary(href=`membres_jury/`+id, role='button') Détails &raquo;
 
 block body
     if(user)
@@ -49,9 +49,9 @@ block body
                     .content
                         .container
                             .jumbotron
-                                h1 Doctorants
+                                h1 Membres de jurys
                         .container
                             .masonry-row
                                 if resultats.length
-                                    for doc in resultats
-                                        +doct(`${doc[0].nom}`, `${doc[0].prenom}`, `${doc[1].intitule}`,`${doc[0]._id}`)
+                                    for membre_jury in resultats
+                                        +membre_jury(`${membre_jury.nom}`, `${membre_jury.prenom}`, `${membre_jury.grade}`,`${membre_jury._id}`)
