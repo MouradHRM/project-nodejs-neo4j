@@ -1,16 +1,51 @@
 extends dashboard.pug
-mixin membre(nom, prenom, role, etablissement)
+mixin membre(id, nom, prenom, role, etablissement)
     tr
         td
-            a(href='')=prenom + ' ' + nom
+            a(href='/membres_jury/'+id)=prenom + ' ' + nom
         td=role
         td=etablissement
 
 block content
     if(resultats)
+        script.
+            var div_show =function() { document.getElementById('abc').style.display = "block";}
+            var div_hide =function() {document.getElementById('abc').style.display = "none";}
         - var format_date = function(date) { return date.substring(6,8) + '/' + date.substring(4,6) + '/' + date.substring(0,4)};
             .content-page
                 .content
+                    #abc
+                        .clearfix
+                        .wrapper-page
+                            .card-box
+                                .panel-heading
+                                    button#close.btn.btn-icon.btn-danger(onclick="div_hide()")
+                                        i.fa.fa-remove
+                                    h3.text-center Modification info 
+                                        strong.text-custom  Doctorant
+                                .panel-body
+                                    form.form-horizontal.m-t-20(action='/doctorants/'+`${resultats[0][0]._id}`, method='post', role='form')
+                                        .form-group    
+                                            label.col-sm-4.control-label(for="nom") Nom*:
+                                            .col-sm-7
+                                                input#nom.form-control(type='text', required, placeholder='Nom', name='nom' , value=`${resultats[0][0].nom}`)
+                                        .form-group     
+                                            label.col-sm-4.control-label(for="prenom") Prénom*:
+                                            .col-sm-7
+                                                input#prenom.form-control(type='text', required, placeholder='prénom', name='prenom' ,value=`${resultats[0][0].prenom}`)
+                                        .form-group
+                                            label.col-sm-4.control-label(for="telephone") Télephone:
+                                            .col-sm-7
+                                                input#telephone.form-control(type='text', placeholder='Télephone', name='telephone' , value=`${resultats[0][0].telephone}`)
+                                        .form-group
+                                            label.col-sm-4.control-label(for="mail") Email:
+                                            .col-sm-7
+                                                input#mail.form-control(type='text', placeholder='Email', name='email', value=`${resultats[0][0].email}`)
+                                        .form-group
+                                            .col-xs-12
+                                                button.btn.btn-primary.btn-block.text-uppercase.waves-effect.waves-light(type="submit") Enregistrer
+                                               
+                                               
                     .container
                         .jumbotron
                             h1 #{resultats[0][0].prenom} #{resultats[0][0].nom}
@@ -21,7 +56,7 @@ block content
                         .row
                             .card-box
                                 .row(style='margin-bottom:15px')
-                                    a.btn.btn-icon.btn-default.pull-right(href='./updatedoct/'+`${resultats[0][0]._id}`)
+                                    button.btn.btn-icon.btn-default.pull-right(onclick='div_show()')
                                         i.fa.fa-wrench
                                         span   Modifier les informations personnelles
                                 .row
@@ -48,7 +83,7 @@ block content
                                             .panel-heading
                                                 h3.panel-title Adresse email
                                             .panel-body
-                                                p #{resultats[0][0].mail}
+                                                p #{resultats[0][0].email}
                         .row
                             .col-md-12
                                 h4.page-header.header-title Thèse
@@ -105,4 +140,4 @@ block content
                                             th Etablissement
                                     tbody
                                         for res in resultats
-                                            +membre(`${res[3].nom}`, `${res[3].prenom}`, `${res[4]}`, `${res[3].etablissement}`)
+                                            +membre(`${res[3]._id}`,`${res[3].nom}`, `${res[3].prenom}`, `${res[4]}`, `${res[3].etablissement}`)

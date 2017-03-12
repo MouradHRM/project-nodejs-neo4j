@@ -27,8 +27,8 @@ Doc.getAll = function (callback) {
     });
 };
 
-Doc.getDoct = function (idDoct, callback) {
-    db.cypherQuery("Match (d:doctorant) where id(d)=" + idDoct + " return d", function(err, results) {
+Doc.updateDoct = function (idDoct, nom, prenom, telephone, email , callback) {
+    db.cypherQuery("Match (d:doctorant) where id(d)=" + idDoct + " set d.nom = '"+nom+"' , d.prenom = '"+prenom+"'  , d.telephone = '"+telephone+"' , d.email = '"+email+"' return d", function(err, results) {
         if (err) return callback(err);
         /*console.log("------data doc 1-----");
         console.log(results.data);*/

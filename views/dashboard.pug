@@ -5,7 +5,7 @@ mixin doct(nom, prenom, intitul, id)
             h2= prenom + ' ' + nom
             p= intitul
                 p
-                    a.btn.btn-primary(href=`dashboard/`+id, role='button') Détails &raquo;
+                    a.btn.btn-primary(href=`doctorants/`+id, role='button') Détails &raquo;
 
 block body
     if(user)
@@ -13,7 +13,7 @@ block body
             .topbar
                 .topbar-left
                     .text-center
-                        a.logo(href='/dashboard')
+                        a.logo(href='/doctorants')
                             i.icon-magnet.icon-c-logo
                             span Phd
                                 i.md.md-album(style='padding: 0 7px')
@@ -23,7 +23,7 @@ block body
                         div
                             ul.nav.navbar-nav.navbar-right.pull-left
                                 li
-                                    a(href='') Doctorants
+                                    a(href='/doctorants') Doctorants
                                 li
                                     a(href='/membres_jury') Membres de jury
                                 li

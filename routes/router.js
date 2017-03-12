@@ -24,7 +24,7 @@ routes.get('/', function(req, res, next) {
   res.render('homepage', {user: req.user, password: req.password});
 });*/
 
-routes.get('/dashboard', function(req, res, next) {
+routes.get('/doctorants', function(req, res, next) {
     Doc.getAll(function (err, results) {
         if (err) return next(err);
         res.render('dashboard', {
@@ -36,7 +36,7 @@ routes.get('/dashboard', function(req, res, next) {
     //res.render('dashboard', {user: req.user, password: req.password});
 });
 
-routes.get('/dashboard/:idDoct', function(req, res, next) {
+routes.get('/doctorants/:idDoct', function(req, res, next) {
     Doc.get(req.params.idDoct, function (err, results) {
         if (err) return next(err);
         res.render('doct_detail', {
@@ -67,22 +67,23 @@ routes.get('/membres_jury/:idMembreJury', function(req, res, next) {
             user: req.user,
             password: req.password,
             resultats: results.data
-routes.get('/dashboard/updatedoct/:idDoct', function(req, res, next) {
-    Doc.getDoct(req.params.idDoct, function (err, results) {
-        if (err) return next(err);
-        res.render('form_doct', {
-            user: req.user,
-            password: req.password,
-            resultats: results.data[0]
         });
      });
     //res.render('dashboard', {user: req.user, password: req.password});
+});
+
+routes.post('/doctorants/:idDoct', function(req, res, next) {
+    Doc.updateDoct(req.params.idDoct, req.body.nom, req.body.prenom, req.body.telephone, req.body.email,  function (err, results) {
+        if (err) return next(err);         
+        res.redirect('/doctorants/'+req.params.idDoct) ;
+        
+ });
 });
 routes.get('/login', function(req, res, next) {
     res.render('dashboard');
 });
 
-routes.post('/login', passport.authenticate('local', { successRedirect:'/dashboard', failureRedirect: '/login'}));
+routes.post('/login', passport.authenticate('local', { successRedirect:'/doctorants', failureRedirect: '/login'}));
 
 routes.get('/logout', function(req, res, next){
     req.logout();

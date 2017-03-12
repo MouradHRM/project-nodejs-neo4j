@@ -1,4 +1,4 @@
-extends layout.pug
+extends dashboard.pug
 mixin membre_jury(nom, prenom, grade, id)
     .masonry-item
         .card-box.masonry-well
@@ -6,52 +6,14 @@ mixin membre_jury(nom, prenom, grade, id)
             p= grade
                 p
                     a.btn.btn-primary(href=`membres_jury/`+id, role='button') Détails &raquo;
-
-block body
-    if(user)
-        #wrapper
-            .topbar
-                .topbar-left
-                    .text-center
-                        a.logo(href='/dashboard')
-                            i.icon-magnet.icon-c-logo
-                            span Phd
-                                i.md.md-album(style='padding: 0 7px')
-                                |Management
-                .navbar.navbar-default(role='navigation')
-                    .container
-                        div
-                            ul.nav.navbar-nav.navbar-right.pull-left
-                                li
-                                    a(href='') Doctorants
-                                li
-                                    a(href='/membres_jury') Membres de jury
-                                li
-                                    a(href='') Articles
-                                li
-                                    a(href='') Soutenance
-                            ul.nav.navbar-nav.navbar-right.pull-right
-                                li.dropdown.top-menu-item-xs
-                                    a.dropdown-toggle.profile.waves-effect.waves-light(href='', data-toggle='dropdown', aria-expanded='true')
-                                        img.img-circle(src='/bootstrap-3.3.7-dist/images/avatar-1.png', alt='Omar Boussaid')
-                                    ul.dropdown-menu
-                                        li
-                                            a(href='')
-                                                i.ti-user.m-r-10.text-custom
-                                                |Bienvenue #{user.displayName}
-                                        li.divider
-                                        li
-                                            a(href='logout')
-                                                i.ti-power-off.m-r-10.text-danger
-                                                |Déconnexion
-            block content    
-                .content-page
-                    .content
-                        .container
-                            .jumbotron
-                                h1 Membres de jurys
-                        .container
-                            .masonry-row
-                                if resultats.length
-                                    for membre_jury in resultats
-                                        +membre_jury(`${membre_jury.nom}`, `${membre_jury.prenom}`, `${membre_jury.grade}`,`${membre_jury._id}`)
+block content    
+    .content-page
+        .content
+            .container
+                .jumbotron
+                    h1 Membres de jurys
+            .container
+                .masonry-row
+                    if resultats.length
+                        for membre_jury in resultats
+                            +membre_jury(`${membre_jury.nom}`, `${membre_jury.prenom}`, `${membre_jury.grade}`,`${membre_jury._id}`)
