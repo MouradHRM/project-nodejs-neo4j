@@ -67,6 +67,11 @@ routes.get('/membres_jury/:idMembreJury', function(req, res, next) {
             user: req.user,
             password: req.password,
             resultats: results.data
+        });
+    });
+    //res.render('dashboard', {user: req.user, password: req.password});
+});
+
 routes.get('/dashboard/updatedoct/:idDoct', function(req, res, next) {
     Doc.getDoct(req.params.idDoct, function (err, results) {
         if (err) return next(err);
