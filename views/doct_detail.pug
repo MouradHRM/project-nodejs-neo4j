@@ -19,69 +19,84 @@ block content
                             .col-md-12
                                 h4.page-header.header-title Informations personnelles
                         .row
-                            .col-md-3
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Nom
-                                    .panel-body
-                                        p #{resultats[0][0].nom}                        
-                            .col-md-3
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Prenom
-                                    .panel-body
-                                        p #{resultats[0][0].prenom}
-                            .col-md-3
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Téléphone
-                                    .panel-body
-                                        p #{resultats[0][0].telephone}
-                            .col-md-3
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Adresse email
-                                    .panel-body
-                                        p #{resultats[0][0].mail}
+                            .card-box
+                                .row(style='margin-bottom:15px')
+                                    a.btn.btn-icon.btn-default.pull-right(href='./updatedoct/'+`${resultats[0][0]._id}`)
+                                        i.fa.fa-wrench
+                                        span   Modifier les informations personnelles
+                                .row
+                                    .col-md-3
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Nom
+                                            .panel-body
+                                                p #{resultats[0][0].nom}                        
+                                    .col-md-3
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Prenom
+                                            .panel-body
+                                                p #{resultats[0][0].prenom}
+                                    .col-md-3
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Téléphone
+                                            .panel-body
+                                                p #{resultats[0][0].telephone}
+                                    .col-md-3
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Adresse email
+                                            .panel-body
+                                                p #{resultats[0][0].mail}
                         .row
                             .col-md-12
                                 h4.page-header.header-title Thèse
                         .row
-                            .col-md-2
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Type de thèse
-                                    .panel-body
-                                        p #{resultats[0][1].type_these}
-                            .col-md-2
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Domaine
-                                    .panel-body
-                                        p #{resultats[0][1].domaine}
-                            .col-md-8
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Intitulé de thèse
-                                    .panel-body
-                                        p #{resultats[0][1].intitule}
-                            .col-md-4
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Date de début
-                                    .panel-body
-                                        p= format_date(`${resultats[0][2].date_debut}`)
-                            .col-md-4
-                                .panel.panel-border.panel-custom
-                                    .panel-heading
-                                        h3.panel-title Date de soutenance
-                                    .panel-body
-                                        p= format_date(`${resultats[0][2].date_fin}`)
+                            .card-box
+                                .row(style='margin-bottom:15px')
+                                    a.btn.btn-icon.btn-default.pull-right(href='./updatethese/'+`${resultats[0][1]._id}`)
+                                        i.fa.fa-wrench
+                                        span   Modifier la thèse
+                                .row
+                                    .col-md-2
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Type de thèse
+                                            .panel-body
+                                                p #{resultats[0][1].type_these}
+                                    .col-md-2
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Domaine
+                                            .panel-body
+                                                p #{resultats[0][1].domaine}
+                                    .col-md-8
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Intitulé de thèse
+                                            .panel-body
+                                                p #{resultats[0][1].intitule}
+                                    .col-md-4
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Date de début
+                                            .panel-body
+                                                p= format_date(`${resultats[0][2].date_debut}`)
+                                    .col-md-4
+                                        .panel.panel-border.panel-custom
+                                            .panel-heading
+                                                h3.panel-title Date de soutenance
+                                            .panel-body
+                                                p= format_date(`${resultats[0][2].date_fin}`)
                         .row
                             .col-md-12
-                                h4.page-header.header-title Membres du jury
+                                h4.page-header.header-title Membres du jury                                
                         .row
                             .card-box
+                                a.btn.btn-icon.btn-default.pull-right(href='./updatelistjury')
+                                    i.fa.fa-wrench
+                                    span   Modifier le jury
                                 table.table.table-striped
                                     thead
                                         tr

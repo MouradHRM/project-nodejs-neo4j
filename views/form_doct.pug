@@ -1,0 +1,28 @@
+extends dashboard.pug
+
+block content
+    if(resultats)
+        .content-page
+            .content
+                .container
+                    .jumbotron
+                        h1 Mise à jour doctorant
+                .container
+                    div
+                        .clearfix
+                        .wrapper-page
+                            .card-box
+                                .panel-heading
+                                    h3.text-center Sign In to 
+                                        strong.text-custom Phd Management
+                                .panel-body
+                                    form.form-horizontal.m-t-20(action='/dashboard/updatedoct/'+resultats._id, method='post', role='form')
+                                        .form-group
+                                            .col-xs-12
+                                                input#username.form-control(type='text', required='', placeholder='Username', name='username')
+                                        .form-group
+                                            .col-xs-12
+                                                input#password.form-control(type='password', required='', placeholder='Password', name='password')
+                                        .form-group.text-center.m-t-40
+                                            .col-xs-12
+                                                button.btn.btn-pink.btn-block.text-uppercase.waves-effect.waves-light(type='submit') Connexion
