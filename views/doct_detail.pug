@@ -174,4 +174,5 @@ block content
                                             th Etablissement
                                     tbody
                                         for res in resultats
-                                            +membre(`${res[3]._id}`,`${res[3].nom}`, `${res[3].prenom}`, `${res[4]}`, `${res[3].etablissement}`)
+                                            if(res[3] != null)
+                                                +membre(`${res[3]._id}`,`${res[3].nom}`, `${res[3].prenom}`, `${res[4]}`, `${res[3].etablissement}`)

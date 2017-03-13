@@ -6,16 +6,16 @@ var Doc = module.exports = function Doc(_node) {
 }
 
 Doc.get = function (idDoct, callback) {
-    db.cypherQuery("MATCH (d:doctorant)-[s:soutient]-(t:these)-[r]-(m:membre_jury) where id(d)="+ idDoct +" return d, t, s, m, type(r)", function (err, results) {
+    db.cypherQuery("MATCH (d:doctorant)-[s:soutient]-(t:these) where id(d)="+idDoct+" optional match (t)-[r]-(m:membre_jury)  return d, t, s, m , type(r)", function (err, results) {
         if (err) return callback(err);
-        /*console.log("------data doc 1-----");
-        console.log(results.data);*/
+        console.log("------data doc 1-----");
+        console.log(results.data);
         callback(null, results);
     });
 };
 
 Doc.getAll = function (callback) {
-    db.cypherQuery("MATCH (d:doctorant)-[:soutient]-(t:these) return d, t", null, function (err, results) {
+    db.cypherQuery("MATCH (d:doctorant)-[s:soutient]-(t:these) return d, t order by s.date_fin DESC", null, function (err, results) {
         if (err) return callback(err);
         /*console.log("------data doc 1-----");
         console.log(results.data[0][0]);
