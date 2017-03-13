@@ -79,6 +79,15 @@ routes.post('/doctorants/:idDoct', function(req, res, next) {
         
  });
 });
+
+routes.post('/doctorants/:idDoct/:idThese', function(req, res, next) {
+    Doc.updateThese(req.params.idThese, req.body.intitule, req.body.type, req.body.domaine, req.body.date_debut,req.body.date_fin,  function (err, results) {
+        if (err) return next(err);         
+        res.redirect('/doctorants/'+req.params.idDoct) ;
+        
+ });
+});
+
 routes.get('/login', function(req, res, next) {
     res.render('dashboard');
 });

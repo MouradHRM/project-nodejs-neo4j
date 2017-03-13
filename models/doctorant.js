@@ -35,3 +35,17 @@ Doc.updateDoct = function (idDoct, nom, prenom, telephone, email , callback) {
         callback(null, results);
     });
 }
+Doc.updateThese = function (idThese, intitule, type, domaine, date_debut , date_fin, callback){
+    var inti = intitule.replace(/'/g, "\\'");
+    //var db = parseInt(date_debut.substring(6,10) + date_debut.substring(4,6) + date_debut.substring(0,2)) ;
+    //var df = parseInt(date_fin.substring(6,10) + date_fin.substring(4,6) + date_fin.substring(0,2)) ;
+    console.log("date") ;
+    console.log(date_fin) ;
+    console.log(parseInt(date_fin.replace(/-/g , ""))) ;
+    db.cypherQuery("Match (t:these)<-[s]-(d:doctorant) where id(t)=" + idThese + " set t.intitule = '"+inti+"' , t.type = '"+type+"'  , t.domaine = '"+domaine+"' , s.date_debut = "+parseInt(date_debut.replace(/-/g , ""))+" , s.date_fin = "+parseInt(date_fin.replace(/-/g , ""))+" return d", function(err, results) {
+        if (err) return callback(err);
+        /*console.log("------data doc 1-----");
+        console.log(results.data);*/
+        callback(null, results);  
+        });
+}

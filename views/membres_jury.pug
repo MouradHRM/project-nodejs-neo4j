@@ -1,4 +1,5 @@
 extends dashboard.pug
+
 mixin membre_jury(nom, prenom, grade, id)
     .masonry-item
         .card-box.masonry-well
@@ -6,7 +7,7 @@ mixin membre_jury(nom, prenom, grade, id)
             p= grade
                 p
                     a.btn.btn-primary(href=`membres_jury/`+id, role='button') Détails &raquo;
-block content    
+block content
     .content-page
         .content
             .container
@@ -16,4 +17,4 @@ block content
                 .masonry-row
                     if resultats.length
                         for membre_jury in resultats
-                            +membre_jury(`${membre_jury.nom}`, `${membre_jury.prenom}`, `${membre_jury.grade}`,`${membre_jury._id}`)
+                            +membre_jury( `${membre_jury.nom}`, `${membre_jury.prenom}`, `${membre_jury.grade}`,`${membre_jury._id}`)

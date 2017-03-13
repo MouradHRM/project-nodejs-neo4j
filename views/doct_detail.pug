@@ -9,17 +9,17 @@ mixin membre(id, nom, prenom, role, etablissement)
 block content
     if(resultats)
         script.
-            var div_show =function() { document.getElementById('abc').style.display = "block";}
-            var div_hide =function() {document.getElementById('abc').style.display = "none";}
-        - var format_date = function(date) { return date.substring(6,8) + '/' + date.substring(4,6) + '/' + date.substring(0,4)};
+            var div_show =function(id) { document.getElementById(id).style.display = "block";}
+            var div_hide =function(id) {document.getElementById(id).style.display = "none";}
+        - var format_date = function(date) { if(date != "") return  date.substring(0,4)  + '-' + date.substring(4,6) + '-' + date.substring(6,8); else return "" ;};
             .content-page
                 .content
-                    #abc
+                    #form1
                         .clearfix
                         .wrapper-page
                             .card-box
                                 .panel-heading
-                                    button#close.btn.btn-icon.btn-danger(onclick="div_hide()")
+                                    button#close.btn.btn-icon.btn-danger(onclick="div_hide(`form1`)")
                                         i.fa.fa-remove
                                     h3.text-center Modification info 
                                         strong.text-custom  Doctorant
@@ -44,7 +44,41 @@ block content
                                         .form-group
                                             .col-xs-12
                                                 button.btn.btn-primary.btn-block.text-uppercase.waves-effect.waves-light(type="submit") Enregistrer
-                                               
+                    #form2
+                        .clearfix
+                        .wrapper-page
+                            .card-box
+                                .panel-heading
+                                    button#close.btn.btn-icon.btn-danger(onclick="div_hide(`form2`)")
+                                        i.fa.fa-remove
+                                    h3.text-center Modification info 
+                                        strong.text-custom  Thèse
+                                .panel-body
+                                    form.form-horizontal.m-t-20(action='/doctorants/'+`${resultats[0][0]._id}`+'/'+`${resultats[0][1]._id}`, method='post', role='form')
+                                        .form-group    
+                                            label.col-sm-4.control-label(for="intitule") Intitulé thèse*:
+                                            .col-sm-7
+                                                input#intitule.form-control(type='textarea', cols ='40' , rows = '2' , required, placeholder='Intitulé thèse', name='intitule' , value=`${resultats[0][1].intitule}` )
+                                        .form-group     
+                                            label.col-sm-4.control-label(for="type") Type thèse*:
+                                            .col-sm-7
+                                                input#type.form-control(type='text', required, placeholder='Type thèse', name='type' ,value=`${resultats[0][1].type}`)
+                                        .form-group
+                                            label.col-sm-4.control-label(for="domaine") Domaine:
+                                            .col-sm-7
+                                                input#domaine.form-control(type='text', placeholder='Domaine', name='domaine' , value=`${resultats[0][1].domaine}`)
+                                        .form-group
+                                            label.col-sm-4.control-label(for="date_debut") Date début:
+                                            .col-sm-7
+                                                input#datedebut.form-control(type='date', placeholder='jj/mm/aaaa', name='date_debut', value=format_date(`${resultats[0][2].date_debut}`))
+                                        .form-group
+                                        .form-group
+                                            label.col-sm-4.control-label(for="date_fin") Date fin:
+                                            .col-sm-7
+                                                input#datefin.form-control(type='date', placeholder='jj/mm/aaaa', name='date_fin', value=format_date(`${resultats[0][2].date_fin}`))
+                                        .form-group
+                                            .col-xs-12
+                                                button.btn.btn-primary.btn-block.text-uppercase.waves-effect.waves-light(type="submit") Enregistrer                                               
                                                
                     .container
                         .jumbotron
@@ -56,9 +90,9 @@ block content
                         .row
                             .card-box
                                 .row(style='margin-bottom:15px')
-                                    button.btn.btn-icon.btn-default.pull-right(onclick='div_show()')
+                                    button.btn.btn-icon.btn-default.pull-right(onclick='div_show(`form1`)')
                                         i.fa.fa-wrench
-                                        span   Modifier les informations personnelles
+                                        span   Modifier
                                 .row
                                     .col-md-3
                                         .panel.panel-border.panel-custom
@@ -90,16 +124,16 @@ block content
                         .row
                             .card-box
                                 .row(style='margin-bottom:15px')
-                                    a.btn.btn-icon.btn-default.pull-right(href='./updatethese/'+`${resultats[0][1]._id}`)
+                                    button.btn.btn-icon.btn-default.pull-right(onclick='div_show(`form2`)')
                                         i.fa.fa-wrench
-                                        span   Modifier la thèse
+                                        span   Modifier
                                 .row
                                     .col-md-2
                                         .panel.panel-border.panel-custom
                                             .panel-heading
                                                 h3.panel-title Type de thèse
                                             .panel-body
-                                                p #{resultats[0][1].type_these}
+                                                p #{resultats[0][1].type}
                                     .col-md-2
                                         .panel.panel-border.panel-custom
                                             .panel-heading
@@ -129,9 +163,9 @@ block content
                                 h4.page-header.header-title Membres du jury                                
                         .row
                             .card-box
-                                a.btn.btn-icon.btn-default.pull-right(href='./updatelistjury')
+                                a.btn.btn-icon.btn-default.pull-right(href='')
                                     i.fa.fa-wrench
-                                    span   Modifier le jury
+                                    span   Modifier
                                 table.table.table-striped
                                     thead
                                         tr
